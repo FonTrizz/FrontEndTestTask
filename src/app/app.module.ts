@@ -4,10 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSortModule} from "@angular/material/sort";
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
