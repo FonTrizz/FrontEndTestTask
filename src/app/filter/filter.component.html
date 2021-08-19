@@ -1,32 +1,23 @@
-<div>
-  <mat-checkbox class="filter">
-    <mat-label>Name</mat-label>
-    <mat-select [(value)]="selectedName" (selectionChange)="onSelection('name')">
-      <mat-option *ngFor="let name of possibleNames" [value]="name">{{name}}</mat-option>
-    </mat-select>
-  </mat-checkbox>
-  <mat-checkbox class="filter">
-    <mat-label>Age</mat-label>
-    <mat-select [(value)]="selectedAge" (selectionChange)="onSelection('age')">
-      <mat-option *ngFor="let name of possibleAges" [value]="name">{{name}}</mat-option>
-    </mat-select>
-  </mat-checkbox>
-  <mat-checkbox class="filter">
-    <mat-label>Gender</mat-label>
-    <mat-select [(value)]="selectedGender" (selectionChange)="onSelection('gender')">
-      <mat-option *ngFor="let name of possibleGenders" [value]="name">{{name}}</mat-option>
-    </mat-select>
-  </mat-checkbox>
-  <mat-checkbox class="filter">
-    <mat-label>Department</mat-label>
-    <mat-select [(value)]="selectedDepartment" (selectionChange)="onSelection('department')">
-      <mat-option *ngFor="let name of possibleDepartments" [value]="name">{{name}}</mat-option>
-    </mat-select>
-  </mat-checkbox>
-  <mat-checkbox class="filter">
-    <mat-label>City</mat-label>
-    <mat-select [(value)]="selectedCity" (selectionChange)="onSelection('city')">
-      <mat-option *ngFor="let name of possibleCities" [value]="name">{{name}}</mat-option>
-    </mat-select>
-  </mat-checkbox>
+<div class="mat-checkbox-wrapper">
+  <h1>Name</h1>
+  <mat-checkbox
+    *ngFor="let name of possibleNames"
+    [checked]="names[name.optionName]"
+    (change)="onCheckboxStateChange($event.checked, 'name', name.optionName)">{{name.optionName}} {{name.count}}</mat-checkbox>
+  <mat-checkbox
+    *ngFor="let gender of possibleGenders"
+    [checked]="genders[gender.optionName]"
+    (change)="onCheckboxStateChange($event.checked, 'gender', gender.optionName)">{{gender.optionName}} {{gender.count}}</mat-checkbox>
+  <mat-checkbox
+    *ngFor="let department of possibleDepartments"
+    [checked]="departments[department.optionName]"
+    (change)="onCheckboxStateChange($event.checked, 'department', department.optionName)">{{department.optionName}} {{department.count}}</mat-checkbox>
+  <mat-checkbox
+    *ngFor="let age of possibleAges"
+    [checked]="ages[age.optionName]"
+    (change)="onCheckboxStateChange($event.checked, 'age', age.optionName)">{{age.optionName}} {{age.count}}</mat-checkbox>
+  <mat-checkbox
+    *ngFor="let city of possibleCities"
+    [checked]="cities[city.optionName]"
+    (change)="onCheckboxStateChange($event.checked, 'city', city.optionName)">{{city.optionName}} {{city.count}}</mat-checkbox>
 </div>

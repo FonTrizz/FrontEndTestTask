@@ -10,7 +10,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatTableModule} from "@angular/material/table";
 import { TableComponent } from './table/table.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {FilterValuesPipe} from "./filter/filter-values.pipe";
 import {MatSelectModule} from "@angular/material/select";
@@ -22,19 +22,20 @@ import {MatSelectModule} from "@angular/material/select";
     TableComponent,
     FilterValuesPipe
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSortModule,
-    MatCheckboxModule,
-    MatCardModule,
-    MatTableModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatSelectModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatSortModule,
+        MatCheckboxModule,
+        MatCardModule,
+        MatTableModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatSelectModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
