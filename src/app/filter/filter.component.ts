@@ -13,10 +13,15 @@ import {PossibleFilterName} from "./filter.types";
 
 export class FilterComponent implements OnInit {
   possibleNames: string[] = [];
+  possibleAges: string[] = [];
+  possibleGenders: string[] = [];
+  possibleDepartments: string[] = [];
+  possibleCities: string[] = [];
   users: User[] = [];
   selectedName = new FormControl();
 
-  constructor(private httpService: HttpClient) {}
+  constructor(private httpService: HttpClient) {
+  }
 
   ngOnInit(): void {
     const pipe = new FilterValuesPipe()

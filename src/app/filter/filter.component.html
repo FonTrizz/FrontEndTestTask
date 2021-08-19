@@ -1,25 +1,32 @@
 <div>
   <mat-checkbox class="filter">
     <mat-label>Name</mat-label>
-    <mat-select [formControl]="selectedName" [(value)]="selectedName">
-      <mat-option *ngFor="let name of possibleNames" [value]="selectedName">{{name}}</mat-option>
+    <mat-select [(value)]="selectedName" (selectionChange)="onSelection('name')">
+      <mat-option *ngFor="let name of possibleNames" [value]="name">{{name}}</mat-option>
     </mat-select>
   </mat-checkbox>
-<!--<mat-checkbox class="filter">-->
-<!--  <mat-label>Age</mat-label>-->
-<!--</mat-checkbox>-->
-<!--<mat-checkbox class="filter">-->
-<!--  <mat-label>Gender</mat-label>-->
-<!--  <select *ngFor="let gender of genderNames">-->
-<!--    <option></option>-->
-<!--    <option>Male</option>-->
-<!--    <option>Female</option>-->
-<!--  </select>-->
-<!--</mat-checkbox>-->
-<!--<mat-checkbox class="filter">-->
-<!--  <mat-label>Department</mat-label>-->
-<!--</mat-checkbox>-->
-<!--<mat-checkbox class="filter">-->
-<!--  <mat-label>City</mat-label>-->
-<!--</mat-checkbox>-->
+  <mat-checkbox class="filter">
+    <mat-label>Age</mat-label>
+    <mat-select [(value)]="selectedAge" (selectionChange)="onSelection('age')">
+      <mat-option *ngFor="let name of possibleAges" [value]="name">{{name}}</mat-option>
+    </mat-select>
+  </mat-checkbox>
+  <mat-checkbox class="filter">
+    <mat-label>Gender</mat-label>
+    <mat-select [(value)]="selectedGender" (selectionChange)="onSelection('gender')">
+      <mat-option *ngFor="let name of possibleGenders" [value]="name">{{name}}</mat-option>
+    </mat-select>
+  </mat-checkbox>
+  <mat-checkbox class="filter">
+    <mat-label>Department</mat-label>
+    <mat-select [(value)]="selectedDepartment" (selectionChange)="onSelection('department')">
+      <mat-option *ngFor="let name of possibleDepartments" [value]="name">{{name}}</mat-option>
+    </mat-select>
+  </mat-checkbox>
+  <mat-checkbox class="filter">
+    <mat-label>City</mat-label>
+    <mat-select [(value)]="selectedCity" (selectionChange)="onSelection('city')">
+      <mat-option *ngFor="let name of possibleCities" [value]="name">{{name}}</mat-option>
+    </mat-select>
+  </mat-checkbox>
 </div>

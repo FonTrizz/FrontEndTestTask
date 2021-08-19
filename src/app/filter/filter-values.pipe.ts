@@ -8,7 +8,6 @@ import {User} from "../utils/utils";
 
 
 export class FilterValuesPipe implements PipeTransform {
-
   transform(users: User[], filters: Filter[]): PossibleOptions[] {
     const prepareCondition = (key: PossibleFilterName) => {
       return (u: User): Boolean => {
@@ -28,11 +27,25 @@ export class FilterValuesPipe implements PipeTransform {
     const conditions = [ageCondition, nameCondition, departmentCondition, genderCondition, cityCondition]
     const possibleUsers = users.filter(u => conditions.every(c => c(u)))
 
-    const userNames = Array.from(new Set(possibleUsers.map(pu => pu.name)))
-    const userAges = Array.from(new Set(possibleUsers.map(pu => pu.age)))
-    const userDepts = Array.from(new Set(possibleUsers.map(pu => pu.department)))
-    const userGenders = Array.from(new Set(possibleUsers.map(pu => pu.gender)))
-    const userCities = Array.from(new Set(possibleUsers.map(pu => pu.address.city)))
+    const calculateUniqueOptions = (options: string[] | number[]) => {
+      const uniqueMap: Record<string|number, number> = {}
+      options.forEach(o => {
+        if (!uniqueMap[o]) {
+          uniqueMap[o] = 0
+        }
+
+        uniqueMap[o]++
+      })
+
+      return uniqueMap
+    }
+
+    const userNames = calculateUniqueOptions(possibleUsers.map(pu => pu.name))
+    const userAges = calculateUniqueOptions(possibleUsers.map(pu => pu.age))
+    const userDepts = calculateUniqueOptions(possibleUsers.map(pu => pu.department))
+    const userGenders = calculateUniqueOptions(possibleUsers.map(pu => pu.gender))
+    const userCities = calculateUniqueOptions(possibleUsers.map(pu => pu.address.city))
+
 
     return [
       {name: PossibleFilterName.Name, values: userNames},
