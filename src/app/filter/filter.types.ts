@@ -13,5 +13,5 @@ export type Filter = {
 
 export type PossibleOptions = {
   name: PossibleFilterName,
-  values: number[] | string[]
+  values: { optionName: string | number, count: number }[]
 }

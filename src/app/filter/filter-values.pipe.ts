@@ -15,7 +15,7 @@ export class FilterValuesPipe implements PipeTransform {
         if (!filter) return true
 
         if (key === PossibleFilterName.City) return u.address.city === filter.value
-        return (u as any)[key] === filter.value
+        return '' + (u as any)[key] === '' + filter.value
       }
     }
 
@@ -48,11 +48,11 @@ export class FilterValuesPipe implements PipeTransform {
 
 
     return [
-      {name: PossibleFilterName.Name, values: userNames},
-      {name: PossibleFilterName.City, values: userCities},
-      {name: PossibleFilterName.Gender, values: userGenders},
-      {name: PossibleFilterName.Age, values: userAges},
-      {name: PossibleFilterName.Department, values: userDepts}
+      {name: PossibleFilterName.Name, values: Object.keys(userNames).map(un => ({optionName: un, count: userNames[un]}))},
+      {name: PossibleFilterName.City, values: Object.keys(userCities).map(uc => ({optionName: uc, count: userCities[uc]}))},
+      {name: PossibleFilterName.Gender, values: Object.keys(userGenders).map(ug => ({optionName: ug, count: userGenders[ug]}))},
+      {name: PossibleFilterName.Age, values: Object.keys(userAges).map(ua => ({optionName: ua, count: userAges[ua]}))},
+      {name: PossibleFilterName.Department, values: Object.keys(userDepts).map(ud => ({optionName: ud, count: userDepts[ud]}))}
     ]
   }
 }

@@ -10,10 +10,24 @@ import {coerceBooleanProperty} from "@angular/cdk/coercion";
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  title = "FrontEndTestTask";
+  _filters: Filter[] = [];
   users: User[] = [];
+  sourceUsers: User[] = [];
 
   constructor(private httpService: HttpClient) {}
+
+  filterData() {
+    const conditions: ((u:User) => Boolean)[] = []
+
+    this._filters.forEach(f => {
+      switch (f.name) {
+        case PossibleFilterName.Name:
+          conditions.push((u: User) => u.name === f.value)
+      }
+    })
+
+    this.users = this.sourceUsers.filter(su => conditions.every(c => c(su)))
+  };
 
   sortData(sort: Sort) {
     if (!sort.active || sort.direction === '') {
@@ -32,6 +46,13 @@ export class TableComponent implements OnInit {
         default: return 0;
       }
     })
+  }
+
+  @Input()
+  set filters(newFilters: Filter[]) {
+    console.log(`Filters changed from ${JSON.stringify(this._filters)} into ${JSON.stringify(newFilters)}`)
+    this._filters = newFilters;
+    this.filterData()
   }
 
   ngOnInit(): void {

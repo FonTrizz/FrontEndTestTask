@@ -4,9 +4,9 @@
   </h1>
 </div>
 <div>
-  <app-table>table of users</app-table>
+  <app-table [filters]="filters">table of users</app-table>
 </div>
 
 <div>
-  <app-filter>test box</app-filter>
+  <app-filter (filtersChanged)="onFiltersChanged($event)">test box</app-filter>
 </div>

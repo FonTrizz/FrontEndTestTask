@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {HttpErrorResponse} from '@angular/common/http';
 import {OnInit} from "@angular/core";
 import {Sort} from "@angular/material/sort";
+import {Filter} from "./filter/filter.types";
 
 @Component({
   selector: 'app-root',
@@ -14,27 +15,15 @@ import {Sort} from "@angular/material/sort";
 export class AppComponent implements OnInit {
   title = "FrontEndTestTask";
   users: User[] = [];
+  filters: Filter[] = [];
 
   constructor(private httpService: HttpClient) {}
 
-  sortData(sort: Sort) {
-    if (!sort.active || sort.direction === '') {
-      this.users = this.users.sort((a,b) => compare(a.sourceOrder, b.sourceOrder, true));
-      return;
-    }
-    this.users = this.users.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-
-      switch (sort.active){
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'age': return compare(a.age, b.age, isAsc);
-        case 'gender': return compare(a.gender, b.gender, isAsc);
-        case 'dept': return compare(a.department, b.department, isAsc);
-        case 'address': return compare(a.address.city, b.address.city, isAsc);
-        default: return 0;
-      }
-    })
+  onFiltersChanged(newFilters: Filter[]) {
+    console.log(newFilters)
+    this.filters = newFilters;
   }
+
 
   ngOnInit(): void {
     this.httpService.get('./assets/test_users.json').subscribe(
@@ -57,7 +46,4 @@ type User = {
     city: string,
     street: string
   }
-}
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
