@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Sort} from "@angular/material/sort";
+import {Filter, PossibleFilterName} from "../filter/filter.types";
+import {coerceBooleanProperty} from "@angular/cdk/coercion";
 
 @Component({
   selector: 'app-table',
@@ -36,6 +38,7 @@ export class TableComponent implements OnInit {
     this.httpService.get('./assets/test_users.json').subscribe(
       data => {
         this.users = (data as User[]).map((u, i) => ({...u, sourceOrder: i}));
+        this.sourceUsers = (data as User[]).map((u, i) => ({...u, sourceOrder: i}));
       }
     )
     throw new Error('Method not implemented.');
