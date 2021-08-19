@@ -1,0 +1,24 @@
+<div style="text-align:center;width:580px;">
+  <table matSort (matSortChange)="sortData($event)">
+    <!-- ADD HEADERS -->
+    <tr>
+      <th mat-sort-header="name">Name</th>
+      <th mat-sort-header="age">Age</th>
+      <th mat-sort-header="gender">Gender</th>
+      <th mat-sort-header="dept">Department</th>
+      <th mat-sort-header="address">Address</th>
+    </tr>
+
+    <!-- BIND ARRAY TO TABLE -->
+    <tr *ngFor="let user of users">
+      <td>{{user.name}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.gender}}</td>
+      <td>{{user.department}}</td>
+      <td>{{user.address.city + ' ' + user.address.street}}</td>
+    </tr>
+  </table>
+</div>
+
+
+

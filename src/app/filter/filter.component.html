@@ -1,1 +1,25 @@
-<p>filter works!</p>
+<div>
+  <mat-checkbox class="filter">
+    <mat-label>Name</mat-label>
+    <mat-select [formControl]="selectedName" [(value)]="selectedName">
+      <mat-option *ngFor="let name of possibleNames" [value]="selectedName">{{name}}</mat-option>
+    </mat-select>
+  </mat-checkbox>
+<!--<mat-checkbox class="filter">-->
+<!--  <mat-label>Age</mat-label>-->
+<!--</mat-checkbox>-->
+<!--<mat-checkbox class="filter">-->
+<!--  <mat-label>Gender</mat-label>-->
+<!--  <select *ngFor="let gender of genderNames">-->
+<!--    <option></option>-->
+<!--    <option>Male</option>-->
+<!--    <option>Female</option>-->
+<!--  </select>-->
+<!--</mat-checkbox>-->
+<!--<mat-checkbox class="filter">-->
+<!--  <mat-label>Department</mat-label>-->
+<!--</mat-checkbox>-->
+<!--<mat-checkbox class="filter">-->
+<!--  <mat-label>City</mat-label>-->
+<!--</mat-checkbox>-->
+</div>

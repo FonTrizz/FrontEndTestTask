@@ -1,0 +1,9 @@
+mat-checkbox{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+  margin: 5px;
+  border: black solid 1px;
+  width: 580px;
+}

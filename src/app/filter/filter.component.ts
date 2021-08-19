@@ -1,94 +1,32 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl} from "@angular/forms";
-import {MatTableDataSource} from "@angular/material/table";
-
+import {FormControl} from '@angular/forms';
+import {FilterValuesPipe} from "./filter-values.pipe";
+import {User} from "../utils/utils";
+import {HttpClient} from "@angular/common/http";
+import {PossibleFilterName} from "./filter.types";
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css']
 })
-export class FilterComponent implements OnInit {
 
-  nameFilter = new FormControl('');
-  ageFilter = new FormControl('');
-  genderFilter = new FormControl('');
-  departmentFilter = new FormControl('');
-  cityFilter = new FormControl('');
-  dataSource = new MatTableDataSource();
-  filterValues = {
-    name: '',
-    age: 0,
-    gender: '',
-    department: '',
-    city: '',
-  };
+export class FilterComponent implements OnInit {
+  possibleNames: string[] = [];
   users: User[] = [];
-  constructor() {
-    this.dataSource.data = this.users;
-    this.dataSource.filterPredicate = this.createFilter();
-  }
+  selectedName = new FormControl();
+
+  constructor(private httpService: HttpClient) {}
 
   ngOnInit(): void {
+    const pipe = new FilterValuesPipe()
+    this.httpService.get('./assets/test_users.json').subscribe(
+      data => {
+        this.users = (data as User[]).map((u, i) => ({...u, sourceOrder: i}));
 
-    this.nameFilter.valueChanges.subscribe(
-      name => {
-        this.filterValues.name = name;
-        this.dataSource.filter = JSON.stringify(this.filterValues);
+        const possibleOptions = pipe.transform(this.users, [])
+        this.possibleNames = possibleOptions.find(po => po.name === PossibleFilterName.Name)?.values as string[]
       }
-    );
-
-    this.ageFilter.valueChanges.subscribe(
-      age => {
-        this.filterValues.age = age;
-        this.dataSource.filter = JSON.stringify(this.filterValues);
-      }
-    );
-
-    this.genderFilter.valueChanges.subscribe(
-      gender => {
-        this.filterValues.gender = gender;
-        this.dataSource.filter = JSON.stringify(this.filterValues);
-      }
-    );
-
-    this.departmentFilter.valueChanges.subscribe(
-      dept => {
-        this.filterValues.department = dept;
-        this.dataSource.filter = JSON.stringify(this.filterValues);
-      }
-    );
-
-    this.cityFilter.valueChanges.subscribe(
-      city => {
-        this.filterValues.city = city;
-        this.dataSource.filter = JSON.stringify(this.filterValues);
-      }
-    );
-
-  }
-  createFilter(): (data: any, filter: string) => boolean {
-    return function (data, filter): boolean {
-      let searchTerms = JSON.parse(filter);
-      return data.name.toLowerCase().indexOf(searchTerms.name) !== -1
-        && data.age.toString().toLowerCase().indexOf(searchTerms.age) !== -1
-        && data.gender.toLowerCase().indexOf(searchTerms.gender) !== -1
-        && data.department.toLowerCase().indexOf(searchTerms.department) !== -1
-        && data.city.toLowerCase().indexOf(searchTerms.city) !== -1;
-    };
-  }
-
-}
-
-type User = {
-  id: string,
-  name: string,
-  age: number,
-  gender: string,
-  department: string,
-  address: {
-    city: string,
-    street: string
+    )
   }
 }
-

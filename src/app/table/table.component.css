@@ -1,0 +1,9 @@
+table{
+  display: table;
+  position: relative;
+  align-content: center;
+  align-items: center;
+  height: 500px;
+  margin: 15px;
+  border: #000000 solid 3px;
+}
