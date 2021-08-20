@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
   users: User[] = [];
   filters: Filter[] = [];
 
-  constructor(private httpService: HttpClient) {}
+  constructor(private httpService: HttpClient) {
+  }
 
   onFiltersChanged(newFilters: Filter[]) {
     this.filters = newFilters;

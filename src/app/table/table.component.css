@@ -1,4 +1,4 @@
-table{
+table {
   display: table;
   position: relative;
   align-content: center;
@@ -11,7 +11,8 @@ table{
   border: #000000 solid 2px;
   text-align: left;
 }
-div{
+
+div {
   display: flex;
   position: relative;
 }

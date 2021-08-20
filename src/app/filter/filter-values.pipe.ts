@@ -28,7 +28,7 @@ export class FilterValuesPipe implements PipeTransform {
     const possibleUsers = users.filter(u => conditions.every(c => c(u)))
 
     const calculateUniqueOptions = (options: string[] | number[]) => {
-      const uniqueMap: Record<string|number, number> = {}
+      const uniqueMap: Record<string | number, number> = {}
       options.forEach(o => {
         if (!uniqueMap[o]) {
           uniqueMap[o] = 0
@@ -48,11 +48,23 @@ export class FilterValuesPipe implements PipeTransform {
 
 
     return [
-      {name: PossibleFilterName.Name, values: Object.keys(userNames).map(un => ({optionName: un, count: userNames[un]}))},
-      {name: PossibleFilterName.City, values: Object.keys(userCities).map(uc => ({optionName: uc, count: userCities[uc]}))},
-      {name: PossibleFilterName.Gender, values: Object.keys(userGenders).map(ug => ({optionName: ug, count: userGenders[ug]}))},
+      {
+        name: PossibleFilterName.Name,
+        values: Object.keys(userNames).map(un => ({optionName: un, count: userNames[un]}))
+      },
+      {
+        name: PossibleFilterName.City,
+        values: Object.keys(userCities).map(uc => ({optionName: uc, count: userCities[uc]}))
+      },
+      {
+        name: PossibleFilterName.Gender,
+        values: Object.keys(userGenders).map(ug => ({optionName: ug, count: userGenders[ug]}))
+      },
       {name: PossibleFilterName.Age, values: Object.keys(userAges).map(ua => ({optionName: ua, count: userAges[ua]}))},
-      {name: PossibleFilterName.Department, values: Object.keys(userDepts).map(ud => ({optionName: ud, count: userDepts[ud]}))}
+      {
+        name: PossibleFilterName.Department,
+        values: Object.keys(userDepts).map(ud => ({optionName: ud, count: userDepts[ud]}))
+      }
     ]
   }
 }
