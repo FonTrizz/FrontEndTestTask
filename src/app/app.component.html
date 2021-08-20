@@ -3,10 +3,10 @@
     {{ title }}
   </h1>
 </div>
-<div>
+<div class="wrapper">
   <app-table [filters]="filters">table of users</app-table>
 </div>
 
-<div>
+<div class="wrapper">
   <app-filter (filtersChanged)="onFiltersChanged($event)">test box</app-filter>
 </div>

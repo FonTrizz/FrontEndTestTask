@@ -14,11 +14,11 @@ import {FormBuilder} from "@angular/forms";
 export class FilterComponent implements OnInit {
   @Output() filtersChanged: EventEmitter<Filter[]> = new EventEmitter();
 
-  names: Record<string, boolean> = { }
-  ages: Record<string, boolean> = { }
-  genders: Record<string, boolean> = { }
-  departments: Record<string, boolean> = { }
-  cities: Record<string, boolean> = { }
+  names: Record<string, boolean> = {}
+  ages: Record<string, boolean> = {}
+  genders: Record<string, boolean> = {}
+  departments: Record<string, boolean> = {}
+  cities: Record<string, boolean> = {}
 
   optionResolver: FilterValuesPipe = new FilterValuesPipe()
   possibleNames: { optionName: string | number, count: number }[] = [];
@@ -29,7 +29,8 @@ export class FilterComponent implements OnInit {
   users: User[] = [];
   filters: Filter[] = [];
 
-  constructor(private httpService: HttpClient, private fb: FormBuilder) {}
+  constructor(private httpService: HttpClient, private fb: FormBuilder) {
+  }
 
   ngOnInit(): void {
     this.httpService.get('./assets/test_users.json').subscribe(
@@ -39,6 +40,7 @@ export class FilterComponent implements OnInit {
       }
     )
   }
+
   onCheckboxStateChange(checked: boolean, type: string, name: string | number) {
     const processChangeState = (bindings: Record<string, boolean>, filterName: PossibleFilterName) => {
       bindings[name] = checked;

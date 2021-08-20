@@ -1,5 +1,8 @@
 .mat-checkbox-wrapper {
+  display: table;
+  position: relative;
   border: 1px solid;
+  width: 580px;
   margin: 15px;
   padding: 5px;
 }

@@ -23,6 +23,19 @@ export class TableComponent implements OnInit {
       switch (f.name) {
         case PossibleFilterName.Name:
           conditions.push((u: User) => u.name === f.value)
+          break;
+        case PossibleFilterName.Age:
+          conditions.push((u: User) => u.age === f.value)
+          break;
+        case PossibleFilterName.Gender:
+          conditions.push((u: User) => u.gender === f.value)
+          break;
+        case PossibleFilterName.City:
+          conditions.push((u: User) => u.address.city === f.value)
+          break;
+        case PossibleFilterName.Department:
+          conditions.push((u: User) => u.department === f.value)
+          break;
       }
     })
 
