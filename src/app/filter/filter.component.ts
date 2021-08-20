@@ -70,7 +70,7 @@ export class FilterComponent implements OnInit {
     }
 
     this.resolvePossibleOptions()
-    this.filtersChanged.emit(this.filters)
+    this.filtersChanged.emit(this.filters.slice())
   }
 
   resolvePossibleOptions() {

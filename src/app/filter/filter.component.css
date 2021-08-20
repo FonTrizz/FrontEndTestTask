@@ -1,14 +1,30 @@
-.mat-checkbox-wrapper {
+.parent div{
   display: table;
   position: relative;
-  border: 1px solid;
-  width: 580px;
+
+}
+.mat-checkbox-wrapper {
+  display: flex;
+  position: relative;
+  border: 3px solid;
+  max-width: 1200px;
   margin: 15px;
   padding: 5px;
 }
 
 .mat-checkbox{
-  height: 60px;
-  margin-left: 5px;
-  width: 200px;
+  position: relative;
+  height: max-content;
+  width: max-content;
+  max-width: 1200px;
+  border: 3px solid;
+  margin: 5px;
+  padding: 2px;
+}
+h1{
+  display: flex;
+  height: max-content;
+  width: max-content;
+  margin-left: 25px;
+  padding: 2px;
 }

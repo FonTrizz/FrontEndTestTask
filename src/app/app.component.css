@@ -1,17 +1,12 @@
-div.wrapper{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
-}
-app-table{
-  grid-column: 1/2;
-  grid-row: 1;
-}
+/*.parent div{*/
+/*  float: left;*/
+/*  clear: none;*/
+
+/*}*/
+/*app-table{*/
+/*  width: 100%;*/
+
+/*}*/
 app-filter{
-  grid-column: 2/2;
-  grid-row: 0;
-  position: relative;
-  vertical-align: top;
+  max-width: 1200px;
 }

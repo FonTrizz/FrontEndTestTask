@@ -1,12 +1,14 @@
-<div style="text-align:center;width:580px;">
+<div style="text-align:center;width:max-content; position:center">
   <h1>
     {{ title }}
   </h1>
 </div>
-<div class="wrapper">
-  <app-table [filters]="filters">table of users</app-table>
-</div>
+<div class="parent">
+  <div class="wrapper">
+    <app-table [filters]="filters">table of users</app-table>
+  </div>
 
-<div class="wrapper">
-  <app-filter (filtersChanged)="onFiltersChanged($event)">test box</app-filter>
+  <div class="wrapper">
+    <app-filter (filtersChanged)="onFiltersChanged($event)">test box</app-filter>
+  </div>
 </div>

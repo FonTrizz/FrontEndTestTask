@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   constructor(private httpService: HttpClient) {}
 
   onFiltersChanged(newFilters: Filter[]) {
-    console.log(newFilters)
     this.filters = newFilters;
   }
 

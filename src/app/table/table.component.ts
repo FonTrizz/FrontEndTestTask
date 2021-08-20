@@ -14,10 +14,11 @@ export class TableComponent implements OnInit {
   users: User[] = [];
   sourceUsers: User[] = [];
 
-  constructor(private httpService: HttpClient) {}
+  constructor(private httpService: HttpClient) {
+  }
 
   filterData() {
-    const conditions: ((u:User) => Boolean)[] = []
+    const conditions: ((u: User) => Boolean)[] = []
 
     this._filters.forEach(f => {
       switch (f.name) {
@@ -25,7 +26,7 @@ export class TableComponent implements OnInit {
           conditions.push((u: User) => u.name === f.value)
           break;
         case PossibleFilterName.Age:
-          conditions.push((u: User) => u.age === f.value)
+          conditions.push((u: User) => u.age === +f.value)
           break;
         case PossibleFilterName.Gender:
           conditions.push((u: User) => u.gender === f.value)
@@ -44,19 +45,25 @@ export class TableComponent implements OnInit {
 
   sortData(sort: Sort) {
     if (!sort.active || sort.direction === '') {
-      this.users = this.users.sort((a,b) => compare(a.sourceOrder, b.sourceOrder, true));
+      this.users = this.users.sort((a, b) => compare(a.sourceOrder, b.sourceOrder, true));
       return;
     }
     this.users = this.users.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
 
-      switch (sort.active){
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'age': return compare(a.age, b.age, isAsc);
-        case 'gender': return compare(a.gender, b.gender, isAsc);
-        case 'dept': return compare(a.department, b.department, isAsc);
-        case 'address': return compare(a.address.city, b.address.city, isAsc);
-        default: return 0;
+      switch (sort.active) {
+        case 'name':
+          return compare(a.name, b.name, isAsc);
+        case 'age':
+          return compare(a.age, b.age, isAsc);
+        case 'gender':
+          return compare(a.gender, b.gender, isAsc);
+        case 'dept':
+          return compare(a.department, b.department, isAsc);
+        case 'address':
+          return compare(a.address.city, b.address.city, isAsc);
+        default:
+          return 0;
       }
     })
   }
@@ -91,6 +98,7 @@ type User = {
     street: string
   }
 }
+
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

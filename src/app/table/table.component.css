@@ -3,7 +3,15 @@ table{
   position: relative;
   align-content: center;
   align-items: center;
-  height: 500px;
-  margin: 15px;
-  border: #000000 solid 3px;
+  height: max-content;
+  width: 100%;
+  min-width: 900px;
+  margin: 5px;
+  padding: 5px;
+  border: #000000 solid 2px;
+  text-align: left;
+}
+div{
+  display: flex;
+  position: relative;
 }
