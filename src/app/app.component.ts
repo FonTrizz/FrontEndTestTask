@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
     this.filters = newFilters;
   }
 
-
   ngOnInit(): void {
     this.httpService.get('./assets/test_users.json').subscribe(
       data => {

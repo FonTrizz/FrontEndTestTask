@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Sort} from "@angular/material/sort";
+import {MatSort, Sort} from "@angular/material/sort";
 import {Filter, PossibleFilterName} from "../filter/filter.types";
 import {coerceBooleanProperty} from "@angular/cdk/coercion";
 
@@ -13,6 +13,7 @@ export class TableComponent implements OnInit {
   _filters: Filter[] = [];
   users: User[] = [];
   sourceUsers: User[] = [];
+  sort: Sort = {active: '', direction: ''};
 
   constructor(private httpService: HttpClient) {
   }
@@ -41,9 +42,10 @@ export class TableComponent implements OnInit {
     })
 
     this.users = this.sourceUsers.filter(su => conditions.every(c => c(su)))
+    this.sortData(this.sort);
   };
 
-  sortData(sort: Sort) {
+   sortData(sort: Sort) {
     if (!sort.active || sort.direction === '') {
       this.users = this.users.sort((a, b) => compare(a.sourceOrder, b.sourceOrder, true));
       return;
@@ -66,6 +68,7 @@ export class TableComponent implements OnInit {
           return 0;
       }
     })
+     this.sort = sort;
   }
 
   @Input()

@@ -1,11 +1,11 @@
 <div>
-  <table matSort (matSortChange)="sortData($event)">
+  <table  matSort (matSortChange)="sortData($event)">
     <tr>
       <th mat-sort-header="name">Name</th>
       <th mat-sort-header="age">Age</th>
       <th mat-sort-header="gender">Gender</th>
       <th mat-sort-header="dept">Department</th>
-      <th mat-sort-header="address" id="address">Address</th>
+      <th mat-sort-header="address">Address</th>
     </tr>
 
     <tr *ngFor="let user of users">
